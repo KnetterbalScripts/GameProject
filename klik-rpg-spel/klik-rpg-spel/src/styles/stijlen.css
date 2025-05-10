@@ -1,0 +1,180 @@
+/* Algemene styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e2f;
+    color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+nav button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+nav button:hover {
+    background-color: #45a049;
+}
+
+.tab {
+    display: none;
+    padding: 20px;
+}
+
+.tab.actief {
+    display: block;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #aaa;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* XP- en gezondheidsbalken */
+#xpBarContainer, #healthBarContainer {
+    width: 100%;
+    background-color: #ddd;
+    height: 20px;
+    margin: 10px 0;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#xpBar, #healthBar {
+    height: 100%;
+    width: 0%; /* Start met 0% voor XP en 100% voor gezondheid */
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+#xpBar {
+    background-color: #2196F3; /* Blauwe kleur voor de XP-balk */
+}
+
+#healthBar {
+    background-color: #4CAF50; /* Groene kleur voor de health bar */
+}
+
+.bar-percentage {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    line-height: 20px; /* Zorg ervoor dat de tekst gecentreerd is */
+}
+
+/* Inventory knoppen */
+#inventory button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#inventory button:hover {
+    background-color: #45a049;
+}
+
+/* Monster containers */
+.monster-container {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.health-bar-container {
+    width: 100%;
+    background-color: #ddd;
+    height: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.health-bar {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 100%; /* Start met 100% */
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+/* Sprites */
+.sprite {
+    width: 40px; /* Breedte van één sprite */
+    height: 40px; /* Hoogte van één sprite */
+    background-image: url('../../assets/afbeeldingen/Spritesheet2.png'); /* Correct pad naar de spritesheet */
+    background-size: 256px 256px; /* Totale grootte van de spritesheet */
+    margin-bottom: 0px;
+    display: inline-block; /* Zorg ervoor dat de sprite inline wordt weergegeven */
+    vertical-align: top; /* Verwijder extra ruimte onder de sprite */
+    line-height: 0; /* Verwijder eventuele extra ruimte door line-height */
+}
+
+/* Sprites per rij en kolom */
+.sprite.giant-rat { background-position: -5px -10px; } /* Rij 1, Kolom 1 */
+.sprite.skeleton { background-position: -45px -10px; } /* Rij 1, Kolom 2 */
+.sprite.zombie { background-position: -85px -10px; } /* Rij 1, Kolom 3 */
+.sprite.cave-bug { background-position: -125px -10px; } /* Rij 1, Kolom 4 */
+.sprite.cave-crawler { background-position: -165px -10px; } /* Rij 1, Kolom 5 */
+.sprite.hobgoblin { background-position: -205px -10px; } /* Rij 1, Kolom 6 */
+.sprite.chaos-druid { background-position: -5px -56px; } /* Rij 2, Kolom 1 */
+.sprite.black-knight { background-position: -45px -56px; } /* Rij 2, Kolom 2 */
+.sprite.hill-giant { background-position: -85px -56px; } /* Rij 2, Kolom 3 */
+.sprite.earth-warrior { background-position: -125px -56px; } /* Rij 2, Kolom 4 */
+.sprite.blue-dragon { background-position: -165px -56px; } /* Rij 2, Kolom 5 */
+.sprite.black-demon { background-position: -205px -56px; } /* Rij 2, Kolom 6 */
+.sprite.chaos-dwarf { background-position: -5px -90px; } /* Rij 3, Kolom 1 */
+.sprite.hellhound { background-position: -45px -90px; } /* Rij 3, Kolom 2 */
+.sprite.moss-giant { background-position: -85px -90px; } /* Rij 3, Kolom 3 */
+.sprite.fire-giant { background-position: -125px -90px; } /* Rij 3, Kolom 4 */
+.sprite.steel-dragon { background-position: -165px -90px; } /* Rij 3, Kolom 5 */
+.sprite.bronze-dragon { background-position: -205px -90px; } /* Rij 3, Kolom 6 */
+.sprite.iron-dragon { background-position: -5px -130px; } /* Rij 4, Kolom 1 */
+.sprite.spiritual-warrior { background-position: -45px -130px; } /* Rij 4, Kolom 2 */
+.sprite.spiritual-mage { background-position: -85px -130px; } /* Rij 4, Kolom 3 */
+.sprite.spiritual-ranger { background-position: -125px -130px; } /* Rij 4, Kolom 4 */
+.sprite.general-graardor { background-position: -165px -130px; } /* Rij 4, Kolom 5 */
+.sprite.kree-arra { background-position: -205px -130px; } /* Rij 4, Kolom 6 */
+.sprite.commander-zilyana { background-position: -5px -170px; } /* Rij 5, Kolom 1 */
+.sprite.kril-tsutsaroth { background-position: -45px -170px; } /* Rij 5, Kolom 2 */
+.sprite.mithril-dragon { background-position: -85px -170px; } /* Rij 5, Kolom 3 */
+.sprite.brutal-green-dragon { background-position: -125px -170px; } /* Rij 5, Kolom 4 */
+.sprite.brutal-red-dragon { background-position: -165px -170px; } /* Rij 5, Kolom 5 */
+.sprite.brutal-black-dragon { background-position: -205px -170px; } /* Rij 5, Kolom 6 */

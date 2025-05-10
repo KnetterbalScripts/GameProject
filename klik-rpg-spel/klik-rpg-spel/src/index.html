@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klik RPG</title>
+    <link rel="stylesheet" href="styles/stijlen.css">
+</head>
+<body>
+    <header>
+        <h1>Klik RPG</h1>
+        <div id="xpBarContainer">
+            <div id="xpBar">
+                <span id="xpPercentage" class="bar-percentage">0%</span>
+            </div>
+        </div>
+        <div id="healthBarContainer">
+            <div id="healthBar">
+                <span id="healthPercentage" class="bar-percentage">100%</span>
+            </div>
+        </div>
+        <nav>
+            <button id="thuisTab">Thuis</button>
+            <button id="kerkerTab">Kerker</button>
+            <button id="winkelTab">Winkel</button>
+        </nav>
+    </header>
+    <main>
+        <section id="thuis" class="tab">
+            <h2>Thuis</h2>
+            <button id="geneesKnop">Genezen</button>
+            <p id="gezondheidWeergave">Gezondheid: 100/100</p>
+            <p id="goudWeergave">Goud: 0</p>
+            <p id="xpWeergave">XP: 0</p>
+            <p id="levelWeergave">Level: 1</p>
+            <p id="wapenWeergave">Wapen: Vuisten (Schade: 5)</p>
+            <div id="xpBarContainer">
+                <div id="xpBar"></div>
+            </div>
+            <h3>Inventory</h3>
+            <div id="inventory"></div>
+        </section>
+        <section id="kerker" class="tab verborgen">
+            <h2>Kerker</h2>
+            <label for="kerkerSelect">Kies een kerker:</label>
+            <select id="kerkerSelect"></select>
+            <div id="monsterLijst"></div>
+            <button id="aanvalKnop">Aanvallen</button>
+        </section>
+        <section id="winkel" class="tab verborgen">
+            <h2>Winkel</h2>
+            <div id="winkelItems"></div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 Klik RPG</p>
+    </footer>
+    <script src="scripts/hoofd.js" type="module"></script>
+</body>
+</html>
