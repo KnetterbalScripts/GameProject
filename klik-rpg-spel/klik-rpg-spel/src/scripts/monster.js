@@ -11,12 +11,12 @@ export class Monster {
 
     neemSchade(schade) {
         this.gezondheid -= schade;
-        console.log(`${this.naam} heeft ${schade} schade ontvangen. Overgebleven gezondheid: ${this.gezondheid}`);
+        console.log(`has received ${schade} damage. Remaining health: ${this.gezondheid}`);
     }
 
     doeSchade(speler) {
         speler.gezondheid -= this.schade;
-        console.log(`${this.naam} heeft ${this.schade} schade toegebracht aan ${speler.naam}. Overgebleven gezondheid: ${speler.gezondheid}`);
+        console.log(`has dealt ${this.schade} damage to ${speler.naam}. Remaining health: ${speler.gezondheid}`);
         if (speler.gezondheid <= 0) {
             console.log(`${speler.naam} is verslagen!`);
         }
@@ -28,7 +28,7 @@ export class Monster {
 
     respawn() {
         this.gezondheid = this.maxGezondheid;
-        console.log(`${this.naam} is opnieuw verschenen met volledige gezondheid!`);
+        console.log(`${this.naam} has respawned with ${this.gezondheid} health.`);
     }
 }
 

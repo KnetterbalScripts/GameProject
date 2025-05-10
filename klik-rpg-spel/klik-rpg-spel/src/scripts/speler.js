@@ -1,33 +1,57 @@
 export class Speler {
     constructor() {
-        this.naam = 'Held';
+        this.naam = 'Hero';
         this.gezondheid = 100;
         this.maxGezondheid = 100;
-        this.goud = 5000;
+        this.goud = 1;
         this.xp = 0;
         this.level = 1;
-        this.wapen = { naam: 'Vuisten', schade: 5 };
-        this.inventory = []; // Inventory voor wapens
+        this.wapen = {naam: 'Empty', schade:2}; // Voorbeeldwapen
+        this.inventory = [{ naam: 'Bronze Longsword', schade: 5, sprite: 'BronzeLongsword.png' }]; // Inventory voor wapens
     }
 
     genees() {
         this.gezondheid = this.maxGezondheid;
-        console.log(`${this.naam} is volledig genezen!`);
+        console.log(`${this.naam} is fully healed!`);
     }
 
     aanval(monster) {
-        const totaleSchade = this.wapen.schade + Math.floor(this.level * Math.random(2,4));;
+        const totaleSchade = this.wapen.schade + Math.floor(this.level * Math.random(2, 4));
         monster.neemSchade(totaleSchade);
-        console.log(`${this.naam} heeft ${monster.naam} aangevallen en ${totaleSchade} schade toegebracht!`);
+        console.log(`${this.naam} attacked ${monster.naam} and dealt ${totaleSchade} damage!`);
+
         if (monster.isDood()) {
             this.goud += monster.goudBeloning;
             this.xp += monster.xpBeloning;
-            console.log(`${monster.naam} is verslagen! Goud: ${this.goud}, XP: ${this.xp}`);
+            console.log(`${monster.naam} is defeated! Gold: ${this.goud}, XP: ${this.xp}`);
             this.checkLevelUp();
         } else {
-            console.log(`${monster.naam} heeft nog ${monster.gezondheid} gezondheid over.`);
+            console.log(`${monster.naam} has ${monster.gezondheid} health remaining.`);
         }
-        return this.gezondheid;
+
+        // Controleer of de speler is verslagen
+        if (this.gezondheid <= 0) {
+            this.gezondheid = 0; // Zorg ervoor dat de gezondheid niet onder 0 gaat
+            this.gaNaarHome(); // Direct naar huis sturen
+        }
+    }
+
+    gaNaarHome() {
+        console.log(`${this.naam} has been defeated and is returning home.`);
+
+        // Verlies 25% van het goud
+        const verlorenGoud = Math.floor(this.goud * 0.25);
+        this.goud -= verlorenGoud;
+        console.log(`You lost 25% of your gold (${verlorenGoud}). Remaining gold: ${this.goud}.`);
+
+        // Herstel gezondheid
+        this.gezondheid = this.maxGezondheid;
+
+        // Simuleer een klik op de "Home"-tab
+        const thuisTab = document.getElementById('thuisTab');
+        if (thuisTab) {
+            thuisTab.click(); // Simuleer een klik op de "Home"-tab
+        }
     }
 
     checkLevelUp() {
@@ -37,21 +61,21 @@ export class Speler {
             this.xp -= xpNodig;
             this.maxGezondheid += 20;
             this.gezondheid = this.maxGezondheid;
-            console.log(`Gefeliciteerd! ${this.naam} is nu level ${this.level}`);
+            console.log(`Congratulations! ${this.naam} is now level ${this.level}`);
         }
     }
 
     voegToeAanInventory(item) {
         this.inventory.push(item);
-        console.log(`${item.naam} is toegevoegd aan je inventory.`);
+        console.log(`${item.naam} has been added to your inventory.`);
     }
 
     selecteerWapen(index) {
         if (this.inventory[index]) {
             this.wapen = this.inventory[index];
-            console.log(`Je hebt ${this.wapen.naam} geselecteerd als je actieve wapen.`);
+            console.log(`You have selected ${this.wapen.naam} as your active weapon.`);
         } else {
-            console.log('Ongeldig wapen!');
+            console.log('Invalid weapon!');
         }
     }
 

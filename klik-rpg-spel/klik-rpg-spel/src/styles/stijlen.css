@@ -5,6 +5,23 @@ body {
     color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Zorg ervoor dat de inhoud bovenaan begint */
+    min-height: 100vh; /* Zorg ervoor dat de container altijd gecentreerd is */
+    overflow-y: auto; /* Sta verticale scroll toe */
+}
+
+#spelContainer {
+    width: 90%; /* Maak de container responsief */
+    max-width: 800px; /* Maximale breedte voor grotere schermen */
+    height: auto; /* Laat de hoogte dynamisch zijn */
+    background-color: #2e2e3e;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: visible; /* Sta scrollen toe binnen de container */
 }
 
 header {
@@ -12,25 +29,61 @@ header {
     color: white;
     padding: 10px;
     text-align: center;
+    font-size: 1.5rem; /* Maak de tekstgrootte dynamisch */
+    width: 100%; /* Zorg ervoor dat de header de volledige breedte inneemt */
+    box-sizing: border-box; /* Inclusief padding in de breedteberekening */
+}
+
+nav {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center; /* Centreer de knoppen */
+    flex-wrap: wrap; /* Zorg ervoor dat knoppen naar een nieuwe regel gaan op kleinere schermen */
+    gap: 10px; /* Ruimte tussen de knoppen */
 }
 
 nav button {
-    margin: 5px;
-    padding: 10px;
+    padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 1rem;
 }
 
 nav button:hover {
     background-color: #45a049;
 }
 
+main {
+    flex: 1;
+    overflow-y: auto; /* Sta verticale scroll toe in de hoofdinhoud */
+    padding: 10px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem; /* Maak de tekstgrootte dynamisch */
+    width: 100%; /* Zorg ervoor dat de footer de volledige breedte inneemt */
+    box-sizing: border-box; /* Inclusief padding in de breedteberekening */
+    margin-top: auto; /* Zorg ervoor dat de footer altijd onderaan staat */
+}
+
+footer img#wapenSprite {
+    height: 30px;
+    width: 30px;
+    vertical-align: middle; /* Zorg ervoor dat de sprite netjes uitlijnt met de tekst */
+    margin-right: 5px; /* Ruimte tussen de sprite en de tekst */
+    border-radius: 3px; /* Optioneel: maak de hoeken van de sprite afgerond */
+}
+
+/* Verberg niet-actieve tabs */
 .tab {
     display: none;
-    padding: 20px;
 }
 
 .tab.actief {
@@ -40,7 +93,7 @@ nav button:hover {
 footer {
     text-align: center;
     margin-top: 20px;
-    color: #aaa;
+    
 }
 
 button {
@@ -60,12 +113,13 @@ button:hover {
 /* XP- en gezondheidsbalken */
 #xpBarContainer, #healthBarContainer {
     width: 100%;
-    background-color: #ddd;
+    background-color: #444; /* Donkere achtergrondkleur voor de balkcontainer */
     height: 20px;
     margin: 10px 0;
     position: relative;
     border-radius: 5px;
     overflow: hidden;
+    border: 1px solid #333; /* Rand om de balkcontainer */
 }
 
 #xpBar, #healthBar {
@@ -80,7 +134,7 @@ button:hover {
 }
 
 #healthBar {
-    background-color: #4CAF50; /* Groene kleur voor de health bar */
+    background-color: #FF4C4C; /* Rode kleur voor de health-balk */
 }
 
 .bar-percentage {
@@ -115,8 +169,27 @@ button:hover {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background: #6d7275;
+background: linear-gradient(90deg,rgba(109, 114, 117, 1) 0%, rgba(185, 199, 187, 1) 50%, rgba(189, 185, 185, 1) 100%);
     color: #333;
+}
+
+.monster-container button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.monster-container button:hover {
+    background-color: #45a049;
+}
+
+.monster-container .health-bar-container {
+    margin-top: 10px;
 }
 
 .health-bar-container {
@@ -152,19 +225,19 @@ button:hover {
 .sprite.skeleton { background-position: -45px -10px; } /* Rij 1, Kolom 2 */
 .sprite.zombie { background-position: -85px -10px; } /* Rij 1, Kolom 3 */
 .sprite.cave-bug { background-position: -125px -10px; } /* Rij 1, Kolom 4 */
-.sprite.cave-crawler { background-position: -165px -10px; } /* Rij 1, Kolom 5 */
-.sprite.hobgoblin { background-position: -205px -10px; } /* Rij 1, Kolom 6 */
+.sprite.hobgoblin { background-position: -165px -10px; } /* Rij 1, Kolom 5 */
+/*.sprite.hobgoblin { background-position: -205px -10px; } /* Rij 1, Kolom 6 */
 .sprite.chaos-druid { background-position: -5px -56px; } /* Rij 2, Kolom 1 */
 .sprite.black-knight { background-position: -45px -56px; } /* Rij 2, Kolom 2 */
-.sprite.hill-giant { background-position: -85px -56px; } /* Rij 2, Kolom 3 */
+.sprite.blue-dragon { background-position: -85px -56px; } /* Rij 2, Kolom 3 */
 .sprite.earth-warrior { background-position: -125px -56px; } /* Rij 2, Kolom 4 */
-.sprite.blue-dragon { background-position: -165px -56px; } /* Rij 2, Kolom 5 */
+/*.sprite.blue-dragon { background-position: -165px -56px; } /* Rij 2, Kolom 5 */
 .sprite.black-demon { background-position: -205px -56px; } /* Rij 2, Kolom 6 */
-.sprite.chaos-dwarf { background-position: -5px -90px; } /* Rij 3, Kolom 1 */
-.sprite.hellhound { background-position: -45px -90px; } /* Rij 3, Kolom 2 */
+.sprite.chaos-dwarf { background-position: -5px -56px; } /* Rij 3, Kolom 1 */
+.sprite.hellhound { background-position: -45px -56px; } /* Rij 3, Kolom 2 */
 .sprite.moss-giant { background-position: -85px -90px; } /* Rij 3, Kolom 3 */
 .sprite.fire-giant { background-position: -125px -90px; } /* Rij 3, Kolom 4 */
-.sprite.steel-dragon { background-position: -165px -90px; } /* Rij 3, Kolom 5 */
+.sprite.sprite.fire-giant { background-position: -165px -104px; } /* Rij 3, Kolom 5 */
 .sprite.bronze-dragon { background-position: -205px -90px; } /* Rij 3, Kolom 6 */
 .sprite.iron-dragon { background-position: -5px -130px; } /* Rij 4, Kolom 1 */
 .sprite.spiritual-warrior { background-position: -45px -130px; } /* Rij 4, Kolom 2 */
@@ -178,3 +251,164 @@ button:hover {
 .sprite.brutal-green-dragon { background-position: -125px -170px; } /* Rij 5, Kolom 4 */
 .sprite.brutal-red-dragon { background-position: -165px -170px; } /* Rij 5, Kolom 5 */
 .sprite.brutal-black-dragon { background-position: -205px -170px; } /* Rij 5, Kolom 6 */
+
+/* Home-tab styling */
+#thuis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#healButton {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#kerkerselect {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#healButton:hover {
+    background-color: #45a049;
+}
+
+#inventory {
+    margin-top: 20px;
+    width: 80%;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+#inventory h3 {
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+#inventoryItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsieve grid */
+    gap: 15px;
+    justify-content: center;
+}
+
+.inventory-item {
+    display: flex;
+    flex-direction: column; /* Zorg ervoor dat de sprite boven de knop staat */
+    align-items: center; /* Centreer de inhoud */
+    text-align: center;
+    gap: 10px; /* Ruimte tussen de sprite en de knop */
+    background-color: #2e2e3e; /* Achtergrondkleur voor de inventory-items */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #4CAF50;
+}
+
+.inventory-item img {
+    width: 50px; /* Breedte van de sprite */
+    height: 50px; /* Hoogte van de sprite */
+}
+
+.inventory-item button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.inventory-item button:hover {
+    background-color: #45a049;
+}
+
+/* Verberg standaard de heal-knop en inventory */
+#healButton, #inventory {
+    display: none;
+}
+#winkelItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsieve grid */
+    gap: 15px;
+    justify-content: center;
+}
+
+.winkel-item {
+    display: flex;
+    flex-direction: column; /* Zorg ervoor dat de sprite boven de knop staat */
+    align-items: center; /* Centreer de inhoud */
+    text-align: center;
+    gap: 10px; /* Ruimte tussen de sprite en de knop */
+    background-color: #2e2e3e;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #4CAF50;
+}
+
+.winkel-item img {
+    width: 50px; /* Breedte van de sprite */
+    height: 50px; /* Hoogte van de sprite */
+}
+
+.winkel-item button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.winkel-item button:hover {
+    background-color: #45a049;
+}
+
+/* Media queries voor kleinere schermen */
+@media (max-width: 768px) {
+    header {
+        font-size: 1.2rem; /* Verklein de tekstgrootte op kleinere schermen */
+        padding: 8px; /* Verminder de padding */
+    }
+
+    footer {
+        font-size: 0.9rem; /* Verklein de tekstgrootte op kleinere schermen */
+        padding: 8px; /* Verminder de padding */
+    }
+
+    nav button {
+        font-size: 0.9rem; /* Verklein de knoptekst */
+        padding: 8px 15px; /* Verminder de padding */
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 1rem; /* Nog kleinere tekstgrootte voor zeer kleine schermen */
+        padding: 5px; /* Nog minder padding */
+    }
+
+    footer {
+        font-size: 0.8rem; /* Nog kleinere tekstgrootte voor zeer kleine schermen */
+        padding: 5px; /* Nog minder padding */
+    }
+
+    nav button {
+        font-size: 0.8rem; /* Verklein de knoptekst verder */
+        padding: 5px 10px; /* Nog minder padding */
+    }
+}
