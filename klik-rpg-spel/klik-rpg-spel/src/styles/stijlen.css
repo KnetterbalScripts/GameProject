@@ -4,7 +4,7 @@ body {
     background-color: #1e1e2f;
     color: #f4f4f4;
     margin: 0;
-    padding: 0;
+
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Zorg ervoor dat de inhoud bovenaan begint */
@@ -19,15 +19,21 @@ body {
     background-color: #2e2e3e;
     border: 2px solid #4CAF50;
     border-radius: 10px;
+    padding-bottom: 150px;
+    padding-top: 250px;
     display: flex;
     flex-direction: column;
     overflow: visible; /* Sta scrollen toe binnen de container */
 }
 
 header {
+    position: fixed; /* Zorg ervoor dat de header altijd bovenaan blijft */
+    top: 0;
+    left: 0;
     background-color: #333;
     color: white;
     padding: 10px;
+    border-radius: 10px 10px 10px 10px; /* Maak de bovenste hoeken afgerond */
     text-align: center;
     font-size: 1.5rem; /* Maak de tekstgrootte dynamisch */
     width: 100%; /* Zorg ervoor dat de header de volledige breedte inneemt */
@@ -63,14 +69,17 @@ main {
 }
 
 footer {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    font-size: 1rem; /* Maak de tekstgrootte dynamisch */
-    width: 100%; /* Zorg ervoor dat de footer de volledige breedte inneemt */
-    box-sizing: border-box; /* Inclusief padding in de breedteberekening */
-    margin-top: auto; /* Zorg ervoor dat de footer altijd onderaan staat */
+    position: fixed; /* Zorg ervoor dat de footer altijd op dezelfde plek blijft */
+    bottom: 0; /* Plaats de footer aan de onderkant van het scherm */
+    left: 0; /* Zorg ervoor dat de footer aan de linkerkant begint */
+    width: 100%; /* Laat de footer de volledige breedte van het scherm innemen */
+    background-color: #333; /* Achtergrondkleur van de footer */
+    color: white; /* Tekstkleur */
+    padding: 10px; /* Ruimte binnen de footer */
+    text-align: center; /* Centreer de tekst */
+    font-size: 1rem; /* Tekstgrootte */
+    z-index: 1000; /* Zorg ervoor dat de footer boven andere elementen blijft */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Optioneel: schaduw voor visuele scheiding */
 }
 
 footer img#wapenSprite {
@@ -121,6 +130,9 @@ button:hover {
     overflow: hidden;
     border: 1px solid #333; /* Rand om de balkcontainer */
 }
+#healthBarContainer{
+    background-color: #FF4C4C;
+}
 
 #xpBar, #healthBar {
     height: 100%;
@@ -130,11 +142,11 @@ button:hover {
 }
 
 #xpBar {
-    background-color: #2196F3; /* Blauwe kleur voor de XP-balk */
+    background-color: #f0bb0c; /* Blauwe kleur voor de XP-balk */
 }
 
 #healthBar {
-    background-color: #FF4C4C; /* Rode kleur voor de health-balk */
+    background-color: #0af316; /* Rode kleur voor de health-balk */
 }
 
 .bar-percentage {
@@ -169,13 +181,24 @@ button:hover {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background: #6d7275;
-background: linear-gradient(90deg,rgba(109, 114, 117, 1) 0%, rgba(185, 199, 187, 1) 50%, rgba(189, 185, 185, 1) 100%);
+    background: linear-gradient(90deg, rgba(109, 114, 117, 1) 0%, rgba(185, 199, 187, 1) 50%, rgba(189, 185, 185, 1) 100%);
     color: #333;
+
+    /* Gebruik Flexbox om de inhoud te centreren */
+    display: flex;
+    flex-direction: column; /* Zorg ervoor dat de inhoud in een kolom staat */
+    justify-content: center; /* Centreer verticaal */
+    align-items: center; /* Centreer horizontaal */
+    text-align: center; /* Zorg ervoor dat tekst gecentreerd is */
+}
+
+.monster-container .button-container {
+    display: flex; /* Zorg ervoor dat de knoppen naast elkaar staan */
+    gap: 10px; /* Ruimte tussen de knoppen */
+    margin-top: 10px; /* Optioneel: ruimte boven de knoppen */
 }
 
 .monster-container button {
-    margin: 5px;
     padding: 10px;
     background-color: #4CAF50;
     color: white;
@@ -194,7 +217,7 @@ background: linear-gradient(90deg,rgba(109, 114, 117, 1) 0%, rgba(185, 199, 187,
 
 .health-bar-container {
     width: 100%;
-    background-color: #ddd;
+    background-color: #f70808;
     height: 10px;
     border-radius: 5px;
     margin: 5px 0;
@@ -271,7 +294,14 @@ background: linear-gradient(90deg,rgba(109, 114, 117, 1) 0%, rgba(185, 199, 187,
     cursor: pointer;
     font-size: 16px;
 }
-#kerkerselect {
+#kerker{
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#kerkerSelect {
     margin: 10px 0;
     padding: 10px;
     background-color: #4CAF50;
@@ -287,8 +317,8 @@ background: linear-gradient(90deg,rgba(109, 114, 117, 1) 0%, rgba(185, 199, 187,
 
 #inventory {
     margin-top: 20px;
-    width: 80%;
-    background-color: #333;
+    width: 90%;
+    background-color: #483E35;
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -302,22 +332,42 @@ background: linear-gradient(90deg,rgba(109, 114, 117, 1) 0%, rgba(185, 199, 187,
 
 #inventoryItems {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsieve grid */
-    gap: 15px;
-    justify-content: center;
+    grid-template-columns: repeat(4, 70px); /* 4 kolommen van 70px breed */
+     /* 8 rijen van 70px hoog */
+    gap: 0px; /* Ruimte tussen de vakjes */
+    justify-content: center; /* Centreer de grid in de container */
+    align-content: center; /* Centreer de inhoud verticaal */
 }
 
 .inventory-item {
+    width: 70px;
+    height: 70px;
+    background-color: #483E35; /* Achtergrondkleur voor de vakjes */
+    border: 1px solid #4CAF50; /* Rand om de vakjes */
+    border-radius: 5px; /* Optioneel: afgeronde hoeken */
     display: flex;
-    flex-direction: column; /* Zorg ervoor dat de sprite boven de knop staat */
-    align-items: center; /* Centreer de inhoud */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    gap: 10px; /* Ruimte tussen de sprite en de knop */
-    background-color: #2e2e3e; /* Achtergrondkleur voor de inventory-items */
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #4CAF50;
+    overflow: hidden; /* Zorg ervoor dat inhoud niet buiten het vakje valt */
 }
+
+.inventory-item img {
+    width: 50px; /* Breedte van de afbeelding */
+    height: 50px; /* Hoogte van de afbeelding */
+    object-fit: contain; /* Zorg ervoor dat de afbeelding binnen het vakje past */
+}
+
+.inventory-item p {
+    font-size: 10px; /* Kleinere tekst voor itemnamen */
+    margin: 0;
+    color: white;
+}
+
+
+
+
 
 .inventory-item img {
     width: 50px; /* Breedte van de sprite */
@@ -384,6 +434,11 @@ background: linear-gradient(90deg,rgba(109, 114, 117, 1) 0%, rgba(185, 199, 187,
         font-size: 1.2rem; /* Verklein de tekstgrootte op kleinere schermen */
         padding: 8px; /* Verminder de padding */
     }
+    #spelContainer {
+        width: 95%; /* Maak de container smaller op kleinere schermen */
+        padding-top: 200px; /* Verminder de bovenste padding */
+        padding-bottom: 150px; /* Verminder de onderste padding */
+    }
 
     footer {
         font-size: 0.9rem; /* Verklein de tekstgrootte op kleinere schermen */
@@ -397,9 +452,15 @@ background: linear-gradient(90deg,rgba(109, 114, 117, 1) 0%, rgba(185, 199, 187,
 }
 
 @media (max-width: 480px) {
+    
     header {
         font-size: 1rem; /* Nog kleinere tekstgrootte voor zeer kleine schermen */
         padding: 5px; /* Nog minder padding */
+    }
+        #spelContainer {
+        width: 95%; /* Maak de container smaller op kleinere schermen */
+        padding-top: 200px; /* Verminder de bovenste padding */
+        padding-bottom: 150px; /* Verminder de onderste padding */
     }
 
     footer {

@@ -3,7 +3,7 @@ export class Speler {
         this.naam = 'Hero';
         this.gezondheid = 100;
         this.maxGezondheid = 100;
-        this.goud = 1;
+        this.goud = 0;
         this.xp = 0;
         this.level = 1;
         this.wapen = {naam: 'Empty', schade:2}; // Voorbeeldwapen

@@ -106,12 +106,21 @@ export class UI {
             monsterContainer.classList.add('monster-container');
 
             // Voeg de sprite toe
-            const monsterSprite = document.createElement('div');
-            monsterSprite.classList.add('sprite', monster.sprite); // Gebruik de sprite-naam
+            const monsterSprite = document.createElement('img');
+            monsterSprite.src = `../assets/afbeeldingen/${monster.sprite}.png`;
+            if (monster.soort === 'normal') {
+            monsterSprite.height = '60';
+            monsterSprite.width = '50'; // Pas de hoogte aan indien nodig
+            } else if (monster.soort === 'boss') {
+                monsterSprite.height = '100';
+                monsterSprite.width = '100'; }
+
+            monsterSprite.alt = monster.naam;
             monsterContainer.appendChild(monsterSprite);
 
             const monsterInfo = document.createElement('p');
-            monsterInfo.textContent = `${monster.naam} - Health: ${monster.gezondheid}/${monster.maxGezondheid}`;
+            monsterInfo.textContent = `${monster.naam}`;
+            monsterContainer.appendChild(monsterInfo);
 
             const healthBarContainer = document.createElement('div');
             healthBarContainer.classList.add('health-bar-container');
@@ -122,6 +131,11 @@ export class UI {
             healthBar.style.width = `${percentage}%`;
 
             healthBarContainer.appendChild(healthBar);
+            monsterContainer.appendChild(healthBarContainer);
+
+            // Maak een container voor de knoppen
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('button-container');
 
             const aanvalKnop = document.createElement('button');
             aanvalKnop.textContent = 'Attack';
@@ -151,7 +165,7 @@ export class UI {
                         }
                         this.toonMonsters(monsters);
                         this.updateStatistieken();
-                    }, 1200); // 1,2 seconden per aanval
+                    }, 800); // 1,2 seconden per aanval
                 }
             });
 
@@ -168,10 +182,14 @@ export class UI {
                 }
             });
 
-            monsterContainer.appendChild(monsterInfo);
-            monsterContainer.appendChild(healthBarContainer);
-            monsterContainer.appendChild(aanvalKnop);
-            monsterContainer.appendChild(vluchtenKnop);
+            // Voeg de knoppen toe aan de button-container
+            buttonContainer.appendChild(aanvalKnop);
+            buttonContainer.appendChild(vluchtenKnop);
+
+            // Voeg de button-container toe aan de monster-container
+            monsterContainer.appendChild(buttonContainer);
+
+            // Voeg de monster-container toe aan de monsterDiv
             monsterDiv.appendChild(monsterContainer);
         });
 
