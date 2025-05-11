@@ -122,43 +122,51 @@ button:hover {
 /* XP- en gezondheidsbalken */
 #xpBarContainer, #healthBarContainer {
     width: 100%;
-    background-color: #444; /* Donkere achtergrondkleur voor de balkcontainer */
+    background-color: #444;
     height: 20px;
     margin: 10px 0;
     position: relative;
     border-radius: 5px;
     overflow: hidden;
-    border: 1px solid #333; /* Rand om de balkcontainer */
+    border: 1px solid #333;
 }
-#healthBarContainer{
+
+#healthBarContainer {
     background-color: #FF4C4C;
 }
 
 #xpBar, #healthBar {
     height: 100%;
-    width: 0%; /* Start met 0% voor XP en 100% voor gezondheid */
-    transition: width 0.3s ease;
+    width: 0%;
+    transition: width 0.5s ease;
     position: relative;
 }
 
 #xpBar {
-    background-color: #f0bb0c; /* Blauwe kleur voor de XP-balk */
+    background-color: #f0bb0c;
 }
 
 #healthBar {
-    background-color: #0af316; /* Rode kleur voor de health-balk */
+    background-color: #0af316;
 }
 
-.bar-percentage {
+#xpPercentage, #healthPercentage {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
     font-weight: bold;
-    line-height: 20px; /* Zorg ervoor dat de tekst gecentreerd is */
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+    z-index: 1;
+    font-size: 12px;
 }
+
+
 
 /* Inventory knoppen */
 #inventory button {

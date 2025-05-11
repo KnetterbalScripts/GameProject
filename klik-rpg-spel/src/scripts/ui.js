@@ -1,7 +1,10 @@
+import { BattleManager } from './battlemanager.js';
+
 export class UI {
     constructor(speler, winkel) {
         this.speler = speler;
         this.winkel = winkel;
+        this.battleManager = new BattleManager(speler);
     }
 
     installeerTabs() {
@@ -39,22 +42,23 @@ export class UI {
         const wapenWeergave = document.getElementById('wapenWeergave');
         const wapenSprite = document.getElementById('wapenSprite');
         wapenWeergave.textContent = `${this.speler.wapen.naam} (${this.speler.wapen.schade} Damage)`;
-        if (this.speler.wapen.naam !== 'Empty'){        wapenSprite.src = `../assets/afbeeldingen/${this.speler.wapen.sprite}`;
-        
-        wapenSprite.alt = this.speler.wapen.naam;}
-
+        if (this.speler.wapen.naam !== 'Empty') {
+            wapenSprite.src = `afbeeldingen/${this.speler.wapen.sprite}`;
+            wapenSprite.alt = this.speler.wapen.naam;
+        }
 
         // Update de health bar
         const healthBar = document.getElementById('healthBar');
         const healthPercentage = (this.speler.gezondheid / this.speler.maxGezondheid) * 100;
         healthBar.style.width = `${healthPercentage}%`;
-        document.getElementById('healthPercentage').textContent = `${Math.floor(healthPercentage)}%`;
+        document.getElementById('healthPercentage').textContent = `HP: ${Math.floor(healthPercentage)}% (${this.speler.gezondheid}/${this.speler.maxGezondheid})`;
 
         // Update de XP-balk
         const xpBar = document.getElementById('xpBar');
         const xpPercentage = this.speler.getXpPercentage();
+        const xpNodig = this.speler.level * 50;
         xpBar.style.width = `${xpPercentage}%`;
-        document.getElementById('xpPercentage').textContent = `${Math.floor(xpPercentage)}%`;
+        document.getElementById('xpPercentage').textContent = `XP: ${Math.floor(xpPercentage)}% (${this.speler.xp}/${xpNodig})`;
     }
 
     toonWinkel() {
@@ -65,7 +69,7 @@ export class UI {
             itemDiv.classList.add('winkel-item'); // Voeg de klasse 'winkel-item' toe
 
             const afbeelding = document.createElement('img');
-            afbeelding.src = `../assets/afbeeldingen/${item.sprite}`;
+            afbeelding.src = `afbeeldingen/${item.sprite}`;
             afbeelding.alt = item.naam;
 
             const knop = document.createElement('button');
@@ -98,109 +102,72 @@ export class UI {
         const monsterDiv = document.getElementById('monsterLijst');
         monsterDiv.innerHTML = '';
 
-        // Declareer gevechtInterval in de bredere scope van de functie
-        let gevechtInterval = null;
-
-        monsters.forEach((monster, index) => {
+        monsters.forEach(monster => {
             const monsterContainer = document.createElement('div');
             monsterContainer.classList.add('monster-container');
 
-            // Voeg de sprite toe
+            // Monster sprite
             const monsterSprite = document.createElement('img');
-            monsterSprite.src = `../assets/afbeeldingen/${monster.sprite}.png`;
+            monsterSprite.src = `afbeeldingen/${monster.sprite}.png`;
+            monsterSprite.alt = monster.naam;
             if (monster.soort === 'normal') {
-            monsterSprite.height = '60';
-            monsterSprite.width = '50'; // Pas de hoogte aan indien nodig
+                monsterSprite.height = '60';
+                monsterSprite.width = '50';
             } else if (monster.soort === 'boss') {
                 monsterSprite.height = '100';
-                monsterSprite.width = '100'; }
-
-            monsterSprite.alt = monster.naam;
+                monsterSprite.width = '100';
+            }
             monsterContainer.appendChild(monsterSprite);
 
+            // Monster info en health bar
             const monsterInfo = document.createElement('p');
-            monsterInfo.textContent = `${monster.naam}`;
+            monsterInfo.textContent = monster.naam;
             monsterContainer.appendChild(monsterInfo);
 
             const healthBarContainer = document.createElement('div');
             healthBarContainer.classList.add('health-bar-container');
-
             const healthBar = document.createElement('div');
             healthBar.classList.add('health-bar');
             const percentage = (monster.gezondheid / monster.maxGezondheid) * 100;
             healthBar.style.width = `${percentage}%`;
-
             healthBarContainer.appendChild(healthBar);
             monsterContainer.appendChild(healthBarContainer);
 
-            // Maak een container voor de knoppen
+            // Knoppen container
             const buttonContainer = document.createElement('div');
             buttonContainer.classList.add('button-container');
 
             const aanvalKnop = document.createElement('button');
             aanvalKnop.textContent = 'Attack';
-            aanvalKnop.disabled = false; // Zorg ervoor dat de knop standaard niet uitgeschakeld is
             aanvalKnop.addEventListener('click', () => {
-                if (!gevechtInterval) {
-                    aanvalKnop.disabled = true; // Schakel de knop uit na de eerste klik
-                    gevechtInterval = setInterval(() => {
-                        this.speler.aanval(monster);
-                        if (monster.isDood()) {
-                            clearInterval(gevechtInterval);
-                            gevechtInterval = null;
-                            aanvalKnop.disabled = false; // Schakel de knop weer in voor een nieuw monster
-                            this.speler.goud += monster.goudBeloning;
-                            this.speler.xp += monster.xpBeloning;
-                            console.log(`${monster.naam} is killed! Gold: ${this.speler.goud}, XP: ${this.speler.xp}`);
-                            this.speler.checkLevelUp();
-                            monster.respawn();
-                        } else {
-                            monster.doeSchade(this.speler);
-                            if (this.speler.gezondheid <= 0) {
-                                clearInterval(gevechtInterval); // Stop het gevecht als de speler dood is
-                                gevechtInterval = null;
-                                console.log('You have been defeated!');
-                                this.speler.gaNaarHome(); // Stuur de speler naar Home
-                            }
-                        }
-                        this.toonMonsters(monsters);
+                this.battleManager.startGevecht(
+                    monster,
+                    aanvalKnop,
+                    () => {
                         this.updateStatistieken();
-                    }, 800); // 1,2 seconden per aanval
-                }
+                        this.toonMonsters(monsters);
+                    },
+                    () => this.toonMonsters(monsters)
+                );
             });
 
             const vluchtenKnop = document.createElement('button');
             vluchtenKnop.textContent = 'Flee';
             vluchtenKnop.addEventListener('click', () => {
-                if (gevechtInterval) {
-                    clearInterval(gevechtInterval); // Stop het gevecht
-                    gevechtInterval = null;
-                }
-                const thuisTab = document.getElementById('thuisTab');
-                if (thuisTab) {
-                    thuisTab.click(); // Simuleer een klik op de "Home"-tab
-                }
+                this.battleManager.stopGevecht();
+                document.getElementById('thuisTab').click();
             });
 
-            // Voeg de knoppen toe aan de button-container
             buttonContainer.appendChild(aanvalKnop);
             buttonContainer.appendChild(vluchtenKnop);
-
-            // Voeg de button-container toe aan de monster-container
             monsterContainer.appendChild(buttonContainer);
-
-            // Voeg de monster-container toe aan de monsterDiv
             monsterDiv.appendChild(monsterContainer);
         });
 
-        // Stop het gevecht als je naar een andere tab gaat
-        const tabs = document.querySelectorAll('nav button');
-        tabs.forEach(tab => {
+        // Stop gevecht bij tab wissel
+        document.querySelectorAll('nav button').forEach(tab => {
             tab.addEventListener('click', () => {
-                if (gevechtInterval) {
-                    clearInterval(gevechtInterval); // Stop het gevecht
-                    gevechtInterval = null;
-                }
+                this.battleManager.stopGevecht();
             });
         });
     }
@@ -213,7 +180,7 @@ export class UI {
             itemDiv.classList.add('inventory-item'); // Voeg de klasse 'inventory-item' toe
 
             const afbeelding = document.createElement('img');
-            afbeelding.src = `../assets/afbeeldingen/${item.sprite}`;
+            afbeelding.src = `afbeeldingen/${item.sprite}`;
             afbeelding.alt = item.naam;
                         afbeelding.addEventListener('click', () => {
                 this.speler.selecteerWapen(index);
