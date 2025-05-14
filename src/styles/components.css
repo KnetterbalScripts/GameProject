@@ -1,0 +1,1148 @@
+/* Combat View Styling */
+.combat-container {
+    background-color: #2e2e3e;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.combat-participants {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.player-section, .monster-section {
+    flex: 1;
+    text-align: center;
+}
+
+.vs-symbol {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f0bb0c;
+    margin: 0 20px;
+}
+
+.combat-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.combat-log {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 16px;
+}
+
+/* Hit Splat Animation */
+.hit-splat {
+    position: absolute;
+    color: red;
+    font-weight: bold;
+    animation: hitSplat 1s ease-out;
+    pointer-events: none;
+}
+
+@keyframes hitSplat {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-50px); opacity: 0; }
+}
+
+/* Combat Fullscreen Styling */
+.combat-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1e1e2f;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    animation: fade-in 0.5s ease-in;
+}
+
+.combat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.combat-scene {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.character-container {
+    text-align: center;
+    position: relative;
+}
+
+.player-sprite, .monster-sprite {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.battle-indicator {
+    font-size: 36px;
+    font-weight: bold;
+    color: #f0bb0c;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.combat-controls {
+    padding: 20px;
+    text-align: center;
+}
+
+.attack-button {
+    font-size: 24px;
+    padding: 15px 40px;
+    background: linear-gradient(to bottom, #4CAF50, #45a049);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.attack-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.flee-button {
+    background-color: #ff4444;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.combat-log {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 16px;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-out {
+    animation: fade-out 0.5s ease-out;
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .combat-scene {
+        flex-direction: column;
+    }
+    
+    .battle-indicator {
+        transform: rotate(90deg);
+        margin: 20px 0;
+    }
+    
+    .player-sprite, .monster-sprite {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Stats View Styling */
+#statsContainer {
+    background-color: #2e2e3e;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#goldDisplay, #levelDisplay {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f0bb0c;
+}
+
+#weaponContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+#weaponSprite {
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #483E35;
+}
+
+.bar-container {
+    margin-bottom: 15px;
+}
+
+.bar-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #4CAF50;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 25px;
+    background-color: #444;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.progress-fill.health {
+    background: linear-gradient(to right, #ff4444, #ff6b6b);
+}
+
+.progress-fill.xp {
+    background: linear-gradient(to right, #4CAF50, #45a049);
+}
+
+.progress-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    line-height: 25px;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    font-size: 14px;
+}
+
+/* Dungeon View Styling */
+.dungeon-select-container {
+    margin: 20px 0;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #4CAF50;
+}
+
+.dungeon-select-container select {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dungeon-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+#dungeonSelect {
+    background-color: #2e2e3e;
+    color: white;
+    border: 1px solid #4CAF50;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#dungeonSelect:hover {
+    background-color: #3e3e4e;
+}
+
+.monster-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.monster-container {
+    background-color: #2e2e3e;
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+}
+
+.monster-container img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    image-rendering: pixelated;  /* For better scaling of pixel art */
+}
+
+.monster-container.boss {
+    border: 2px solid #f0bb0c;
+    background-color: rgba(240, 187, 12, 0.1);
+}
+
+.monster-container .health-bar-container {
+    margin: 10px 0;
+}
+
+/* Victory/Death Messages */
+.victory-message, .death-message {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(76, 175, 80, 0.2);
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.victory-message h3,
+.death-message h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.death-message {
+    background-color: rgba(244, 67, 54, 0.2);
+}
+
+.drops-list {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.drops-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.drops-list li {
+    margin: 5px 0;
+}
+
+/* Inventory Grid */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 85px); /* Increased from 70px */
+    gap: 12px; /* Slightly larger gap */
+    justify-content: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+/* Item containers */
+.inventory-item {
+    width: 85px; /* Increased from 70px */
+    height: 85px; /* Increased from 70px */
+    background-color: #483E35;
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.inventory-item:hover {
+    transform: translateY(-2px);
+}
+
+.sprite-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.sprite-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.item-amount {
+    position: absolute;
+    top: 0;        /* Changed from bottom: 0 */
+    left: 0;       /* Changed from right: 0 */
+    background-color: transparent;
+    color: white;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+    min-width: 15px;
+    text-align: center;
+}
+
+.sell-price {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: gold;
+    font-size: 10px;
+    padding: 2px;
+    text-align: center;
+}
+
+.inventory-item .item-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    color: white;
+    font-size: 10px;
+    padding: 2px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Shop items */
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Health bars */
+.health-bar-container {
+    width: 100%;
+    background-color: #444;
+    height: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.health-bar {
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.3s ease;
+}
+
+/* Shop Styling */
+.shop-container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.shop-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Table header */
+.shop-table thead tr {
+    display: grid;
+    grid-template-columns: minmax(150px, 2fr) minmax(80px, 1fr) minmax(80px, 1fr) minmax(80px, 1fr);
+    align-items: center;
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #4CAF50;
+}
+
+.shop-table thead th {
+    color: #4CAF50;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Table body */
+.shop-table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(150px, 2fr) minmax(80px, 1fr) minmax(80px, 1fr) minmax(80px, 1fr);
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #4CAF50;
+}
+
+.item-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-cell img {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+}
+
+.buy-button {
+    width: 100%;
+    max-width: 80px;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buy-button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .shop-container {
+        padding: 10px;
+    }
+
+    .shop-table thead tr,
+    .shop-table tbody tr {
+        grid-template-columns: minmax(120px, 2fr) minmax(60px, 1fr) minmax(60px, 1fr) minmax(60px, 1fr);
+        padding: 8px;
+    }
+
+    .item-cell {
+        gap: 8px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .shop-table thead tr,
+    .shop-table tbody tr {
+        grid-template-columns: minmax(100px, 2fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
+        padding: 6px;
+    }
+
+    .buy-button {
+        padding: 6px;
+        font-size: 12px;
+    }
+}
+
+/* Shop Inventory Section */
+.inventory-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.inventory-section h3 {
+    margin-bottom: 15px;
+}
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    /* General Layout */
+    #spelContainer {
+        padding: 10px;
+    }
+
+    /* Stats Container */
+    #statsContainer {
+        padding: 10px;
+    }
+
+    .stats-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    /* Inventory Grid */
+    .inventory-grid {
+        grid-template-columns: repeat(4, 55px); /* Increased from 45px */
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .inventory-item {
+        width: 55px; /* Increased from 45px */
+        height: 55px; /* Increased from 45px */
+    }
+
+    /* Monster List */
+    .monster-list {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .monster-container {
+        padding: 10px;
+    }
+
+    .monster-container img {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Combat View */
+    .combat-fullscreen {
+        padding: 10px;
+    }
+
+    .combat-scene {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .player-sprite, .monster-sprite {
+        width: 100px;
+        height: 100px;
+    }
+
+    .combat-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .attack-button {
+        font-size: 18px;
+        padding: 10px 30px;
+    }
+
+    /* Shop View */
+    .shop-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .shop-table {
+        font-size: 14px;
+    }
+
+    .shop-table th,
+    .shop-table td {
+        padding: 8px;
+    }
+
+    .item-cell img {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Navigation */
+    nav button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    /* Shop fixes */
+    .shop-container {
+        padding: 10px;
+    }
+
+    .shop-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .shop-item {
+        font-size: 14px;
+    }
+
+    .shop-table {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .shop-table tr {
+        display: grid;
+        grid-template-columns: 60px 1fr auto;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #4CAF50;
+    }
+
+    .shop-table th {
+        display: none;
+    }
+
+    /* Inventory fixes */
+    .inventory-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        padding: 10px;
+        ;
+    }
+
+    .inventory-item {
+        width: auto;
+        height: auto;
+        aspect-ratio: 1;
+        min-height: 60px;
+    }
+
+    .sprite-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .item-amount {
+        font-size: 12px;
+        padding: 2px 4px;
+    }
+
+    .shop-container {
+        padding: 0;  /* Remove padding */
+        width: 100%;
+    }
+
+    .shop-table {
+        width: 100%;
+        margin: 0;   /* Remove margin */
+        border-radius: 0;  /* Optional: remove rounded corners on mobile */
+    }
+
+    .shop-table tr {
+        display: grid;
+        grid-template-columns: 40px 1fr 50px;  /* Adjusted column sizes */
+        gap: 5px;
+        padding: 8px;
+        border-bottom: 1px solid #4CAF50;
+        margin: 0;  /* Remove margin */
+    }
+
+    .shop-header {
+        padding: 10px 0;  /* Only vertical padding */
+    }
+
+    .shop-table td {
+        padding: 4px;
+    }
+
+    .buy-button {
+        width: 100%;
+        min-width: 50px;
+        padding: 4px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .inventory-grid {
+        grid-template-columns: repeat(4, 50px); /* Increased from 40px */
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .inventory-item {
+        width: 50px; /* Increased from 40px */
+        height: 50px; /* Increased from 40px */
+    }
+
+    .monster-list {
+        grid-template-columns: 1fr;
+    }
+
+    .combat-log {
+        max-height: 120px;
+        padding: 10px;
+        font-size: 13px;
+        margin-top: 10px;
+    }
+
+    .player-sprite, .monster-sprite {
+        width: 80px;
+        height: 80px;
+    }
+
+    nav button {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    /* Even smaller screens */
+    .inventory-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .shop-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .shop-table tr {
+        grid-template-columns: 50px 1fr auto;
+        gap: 5px;
+        padding: 8px;
+    }
+
+    .item-name {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .inventory-grid {
+        grid-template-columns: repeat(4, 45px); /* Increased from 35px */
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .inventory-item {
+        width: 45px; /* Increased from 35px */
+        height: 45px; /* Increased from 35px */
+    }
+}
+
+/* Base container styling */
+.inventory-grid,
+.shop-container,
+.monster-list,
+.dungeon-content {
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+    #spelContainer {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .inventory-grid {
+        grid-template-columns: repeat(4, minmax(50px, 1fr));
+        gap: 5px;
+        padding: 5px;
+        width: 100%;
+    }
+
+    .shop-container,
+    .monster-list,
+    .dungeon-content {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .monster-container {
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .inventory-grid {
+        grid-template-columns: repeat(3, minmax(50px, 1fr));
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .inventory-grid {
+        grid-template-columns: repeat(2, minmax(50px, 1fr));
+    }
+
+    .inventory-item {
+        min-height: 50px;
+    }
+}
+
+/* Base shop styling */
+.shop-container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.shop-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Base layout for shop items - keep this consistent across all screens */
+.shop-table tr {
+    display: grid;
+    grid-template-columns: 60px 1fr 80px;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #4CAF50;
+}
+
+.item-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-cell img {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+}
+
+.buy-button {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Only adjust spacing and padding in media queries */
+@media screen and (max-width: 768px) {
+    .shop-container {
+        padding: 10px;
+    }
+
+    .shop-table tr {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .item-cell {
+        gap: 8px;
+    }
+    .item-cell img {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+}
+}
+
+@media screen and (max-width: 480px) {
+    .shop-container {
+        padding: 5px;
+    }
+
+    .shop-table tr {
+        padding: 6px;
+        gap: 6px;
+    }
+
+    .item-cell {
+        gap: 6px;
+    }
+    .item-cell img {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+}
+}
+
+/* Inventory Grid - Base styling (PC/Full screen) */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 85px); /* Increased from 70px */
+    gap: 12px; /* Slightly larger gap */
+    justify-content: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.inventory-item {
+    width: 85px; /* Increased from 70px */
+    height: 85px; /* Increased from 70px */
+    background-color: #483E35;
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+/* Mobile Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .inventory-grid {
+        grid-template-columns: repeat(4, 75px); /* Match item width */
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .inventory-item {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .inventory-grid {
+        grid-template-columns: repeat(3, 70px); /* Match item width */
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .inventory-item {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .inventory-grid {
+        grid-template-columns: repeat(3, 70px); /* Match item width */
+        gap: 8px;
+        padding: 5px;
+    }
+
+    .inventory-item {
+        width: 70px;
+        height: 70px;
+    }
+
+}
+
+/* Combat Log Base Styling */
+.combat-log {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 16px;
+}
+
+.victory-message h3,
+.death-message h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.drops-list {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .combat-log {
+        max-height: 150px;
+        padding: 12px;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+    .victory-message h3,
+    .death-message h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .drops-list {
+        margin-top: 12px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .combat-log {
+        max-height: 120px;
+        padding: 10px;
+        font-size: 13px;
+        margin-top: 10px;
+    }
+
+    .victory-message h3,
+    .death-message h3 {
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+
+    .drops-list {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+}
+
+.save-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.save-button:hover {
+    background-color: #45a049;
+}
+
+.stats-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.game-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.game-button:hover {
+    background-color: #45a049;
+}
+
+.game-button.warning {
+    background-color: #f44336;
+}
+
+.game-button.warning:hover {
+    background-color: #d32f2f;
+}

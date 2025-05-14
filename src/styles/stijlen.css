@@ -1,0 +1,58 @@
+/* Basis styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e2f;
+    color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+#spelContainer {
+    width: 90%;
+    max-width: 800px;
+    background-color: #2e2e3e;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Tab styling */
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+}
+
+/* Button styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* Headers */
+h1, h2, h3 {
+    color: #4CAF50;
+    text-align: center;
+}

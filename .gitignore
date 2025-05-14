@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# IDE files
+.vscode/
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Keep dist for GitHub Pages
+!dist/

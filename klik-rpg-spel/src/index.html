@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click RPG</title>
+    <link rel="stylesheet" href="styles/stijlen.css">
+</head>
+<body>
+    <div id="spelContainer">
+        <header>
+            <h1>Click RPG</h1>
+<div id="healthBarContainer">
+    <div id="healthBar"></div>
+    <span id="healthPercentage"></span>
+</div>
+
+<div id="xpBarContainer">
+    <div id="xpBar"></div>
+    <span id="xpPercentage"></span>
+</div>
+            <nav>
+                <button id="thuisTab">Home</button>
+                <button id="kerkerTab">Dungeon</button>
+                <button id="winkelTab">Shop</button>
+            </nav>
+        </header>
+        <main>
+            <section id="thuis" class="tab actief">
+                
+                <button id="healButton">Heal</button>
+                <div id="inventory">
+                    <h3>Inventory</h3>
+                    <div id="inventoryItems"></div>
+                </div>
+            </section>
+            <section id="kerker" class="tab verborgen">
+                <select id="kerkerSelect"></select>
+                <div id="monsterLijst"></div>
+            </section>
+            <section id="winkel" class="tab verborgen">
+                <div id="healthKopen"></div>
+                <div id="winkelItems"></div>
+            </section>
+        </main>
+        <footer>
+            <p>💰<span id="goudWeergave"></span></p>
+
+            <p><span id="levelWeergave"></span></p>
+            <p>Weapon: <img id="wapenSprite"> <span id="wapenWeergave"></span></p>
+        </footer>
+    </div>
+    <script src="scripts/hoofd.js" type="module"></script>
+</body>
+</html>

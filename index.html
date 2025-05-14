@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click RPG</title>
+    <link rel="stylesheet" href="dist/styles/stijlen.css">
+    <link rel="stylesheet" href="dist/styles/components.css">
+</head>
+<body>
+    <div id="spelContainer">
+        <header>
+            <h1>Click RPG</h1>
+            <div id="statsContainer"></div>
+            <nav>
+                <button id="homeTab" data-tab="home" class="active">Home</button>
+                <button id="dungeonTab" data-tab="dungeon">Dungeon</button>
+                <button id="shopTab" data-tab="shop">Shop</button>
+            </nav>
+        </header>
+        
+        <main>
+            <!-- Home/Inventory tab -->
+            <section id="homeContainer" class="tab">
+                <h2>Inventory</h2>
+                <div id="inventoryContainer"></div>
+            </section>
+
+            <!-- Dungeon tab -->
+            <section id="dungeonContainer" class="tab">
+                <div id="monsterList"></div>
+                <div id="combatContainer"></div>
+            </section>
+
+            <!-- Shop tab -->
+            <section id="shopContainer" class="tab">
+                <!-- Shop content will be rendered here -->
+            </section>
+        </main>
+    </div>
+    <script src="dist/game.bundle.js"></script>
+</body>
+</html>

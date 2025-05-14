@@ -1,0 +1,483 @@
+/* Algemene styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e2f;
+    color: #f4f4f4;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Zorg ervoor dat de inhoud bovenaan begint */
+    min-height: 100vh; /* Zorg ervoor dat de container altijd gecentreerd is */
+    overflow-y: auto; /* Sta verticale scroll toe */
+}
+
+#spelContainer {
+    width: 90%; /* Maak de container responsief */
+    max-width: 800px; /* Maximale breedte voor grotere schermen */
+    height: auto; /* Laat de hoogte dynamisch zijn */
+    background-color: #2e2e3e;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding-bottom: 150px;
+    padding-top: 250px;
+    display: flex;
+    flex-direction: column;
+    overflow: visible; /* Sta scrollen toe binnen de container */
+}
+
+header {
+    position: fixed; /* Zorg ervoor dat de header altijd bovenaan blijft */
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px 10px 10px; /* Maak de bovenste hoeken afgerond */
+    text-align: center;
+    font-size: 1.5rem; /* Maak de tekstgrootte dynamisch */
+    width: 100%; /* Zorg ervoor dat de header de volledige breedte inneemt */
+    box-sizing: border-box; /* Inclusief padding in de breedteberekening */
+}
+
+nav {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center; /* Centreer de knoppen */
+    flex-wrap: wrap; /* Zorg ervoor dat knoppen naar een nieuwe regel gaan op kleinere schermen */
+    gap: 10px; /* Ruimte tussen de knoppen */
+}
+
+nav button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+nav button:hover {
+    background-color: #45a049;
+}
+
+main {
+    flex: 1;
+    overflow-y: auto; /* Sta verticale scroll toe in de hoofdinhoud */
+    padding: 10px;
+}
+
+footer {
+    position: fixed; /* Zorg ervoor dat de footer altijd op dezelfde plek blijft */
+    bottom: 0; /* Plaats de footer aan de onderkant van het scherm */
+    left: 0; /* Zorg ervoor dat de footer aan de linkerkant begint */
+    width: 100%; /* Laat de footer de volledige breedte van het scherm innemen */
+    background-color: #333; /* Achtergrondkleur van de footer */
+    color: white; /* Tekstkleur */
+    padding: 10px; /* Ruimte binnen de footer */
+    text-align: center; /* Centreer de tekst */
+    font-size: 1rem; /* Tekstgrootte */
+    z-index: 1000; /* Zorg ervoor dat de footer boven andere elementen blijft */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Optioneel: schaduw voor visuele scheiding */
+}
+
+footer img#wapenSprite {
+    height: 30px;
+    width: 30px;
+    vertical-align: middle; /* Zorg ervoor dat de sprite netjes uitlijnt met de tekst */
+    margin-right: 5px; /* Ruimte tussen de sprite en de tekst */
+    border-radius: 3px; /* Optioneel: maak de hoeken van de sprite afgerond */
+}
+
+/* Verberg niet-actieve tabs */
+.tab {
+    display: none;
+}
+
+.tab.actief {
+    display: block;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* XP- en gezondheidsbalken */
+#xpBarContainer, #healthBarContainer {
+    width: 100%;
+    background-color: #444;
+    height: 20px;
+    margin: 10px 0;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+#healthBarContainer {
+    background-color: #FF4C4C;
+}
+
+#xpBar, #healthBar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+#xpBar {
+    background-color: #f0bb0c;
+}
+
+#healthBar {
+    background-color: #0af316;
+}
+
+#xpPercentage, #healthPercentage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+    z-index: 1;
+    font-size: 12px;
+}
+
+
+
+/* Inventory knoppen */
+#inventory button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#inventory button:hover {
+    background-color: #45a049;
+}
+
+/* Monster containers */
+.monster-container {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: linear-gradient(90deg, rgba(109, 114, 117, 1) 0%, rgba(185, 199, 187, 1) 50%, rgba(189, 185, 185, 1) 100%);
+    color: #333;
+
+    /* Gebruik Flexbox om de inhoud te centreren */
+    display: flex;
+    flex-direction: column; /* Zorg ervoor dat de inhoud in een kolom staat */
+    justify-content: center; /* Centreer verticaal */
+    align-items: center; /* Centreer horizontaal */
+    text-align: center; /* Zorg ervoor dat tekst gecentreerd is */
+}
+
+.monster-container .button-container {
+    display: flex; /* Zorg ervoor dat de knoppen naast elkaar staan */
+    gap: 10px; /* Ruimte tussen de knoppen */
+    margin-top: 10px; /* Optioneel: ruimte boven de knoppen */
+}
+
+.monster-container button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.monster-container button:hover {
+    background-color: #45a049;
+}
+
+.monster-container .health-bar-container {
+    margin-top: 10px;
+}
+
+.health-bar-container {
+    width: 100%;
+    background-color: #f70808;
+    height: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.health-bar {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 100%; /* Start met 100% */
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+/* Sprites */
+.sprite {
+    width: 40px; /* Breedte van één sprite */
+    height: 40px; /* Hoogte van één sprite */
+    background-image: url('../../assets/afbeeldingen/Spritesheet2.png'); /* Correct pad naar de spritesheet */
+    background-size: 256px 256px; /* Totale grootte van de spritesheet */
+    margin-bottom: 0px;
+    display: inline-block; /* Zorg ervoor dat de sprite inline wordt weergegeven */
+    vertical-align: top; /* Verwijder extra ruimte onder de sprite */
+    line-height: 0; /* Verwijder eventuele extra ruimte door line-height */
+}
+
+/* Sprites per rij en kolom */
+.sprite.giant-rat { background-position: -5px -10px; } /* Rij 1, Kolom 1 */
+.sprite.skeleton { background-position: -45px -10px; } /* Rij 1, Kolom 2 */
+.sprite.zombie { background-position: -85px -10px; } /* Rij 1, Kolom 3 */
+.sprite.cave-bug { background-position: -125px -10px; } /* Rij 1, Kolom 4 */
+.sprite.hobgoblin { background-position: -165px -10px; } /* Rij 1, Kolom 5 */
+/*.sprite.hobgoblin { background-position: -205px -10px; } /* Rij 1, Kolom 6 */
+.sprite.chaos-druid { background-position: -5px -56px; } /* Rij 2, Kolom 1 */
+.sprite.black-knight { background-position: -45px -56px; } /* Rij 2, Kolom 2 */
+.sprite.blue-dragon { background-position: -85px -56px; } /* Rij 2, Kolom 3 */
+.sprite.earth-warrior { background-position: -125px -56px; } /* Rij 2, Kolom 4 */
+/*.sprite.blue-dragon { background-position: -165px -56px; } /* Rij 2, Kolom 5 */
+.sprite.black-demon { background-position: -205px -56px; } /* Rij 2, Kolom 6 */
+.sprite.chaos-dwarf { background-position: -5px -56px; } /* Rij 3, Kolom 1 */
+.sprite.hellhound { background-position: -45px -56px; } /* Rij 3, Kolom 2 */
+.sprite.moss-giant { background-position: -85px -90px; } /* Rij 3, Kolom 3 */
+.sprite.fire-giant { background-position: -125px -90px; } /* Rij 3, Kolom 4 */
+.sprite.sprite.fire-giant { background-position: -165px -104px; } /* Rij 3, Kolom 5 */
+.sprite.bronze-dragon { background-position: -205px -90px; } /* Rij 3, Kolom 6 */
+.sprite.iron-dragon { background-position: -5px -130px; } /* Rij 4, Kolom 1 */
+.sprite.spiritual-warrior { background-position: -45px -130px; } /* Rij 4, Kolom 2 */
+.sprite.spiritual-mage { background-position: -85px -130px; } /* Rij 4, Kolom 3 */
+.sprite.spiritual-ranger { background-position: -125px -130px; } /* Rij 4, Kolom 4 */
+.sprite.general-graardor { background-position: -165px -130px; } /* Rij 4, Kolom 5 */
+.sprite.kree-arra { background-position: -205px -130px; } /* Rij 4, Kolom 6 */
+.sprite.commander-zilyana { background-position: -5px -170px; } /* Rij 5, Kolom 1 */
+.sprite.kril-tsutsaroth { background-position: -45px -170px; } /* Rij 5, Kolom 2 */
+.sprite.mithril-dragon { background-position: -85px -170px; } /* Rij 5, Kolom 3 */
+.sprite.brutal-green-dragon { background-position: -125px -170px; } /* Rij 5, Kolom 4 */
+.sprite.brutal-red-dragon { background-position: -165px -170px; } /* Rij 5, Kolom 5 */
+.sprite.brutal-black-dragon { background-position: -205px -170px; } /* Rij 5, Kolom 6 */
+
+/* Home-tab styling */
+#thuis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#healButton {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#kerker{
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#kerkerSelect {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#healButton:hover {
+    background-color: #45a049;
+}
+
+#inventory {
+    margin-top: 20px;
+    width: 90%;
+    background-color: #483E35;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+#inventory h3 {
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+#inventoryItems {
+    display: grid;
+    grid-template-columns: repeat(4, 70px); /* 4 kolommen van 70px breed */
+     /* 8 rijen van 70px hoog */
+    gap: 0px; /* Ruimte tussen de vakjes */
+    justify-content: center; /* Centreer de grid in de container */
+    align-content: center; /* Centreer de inhoud verticaal */
+}
+
+.inventory-item {
+    width: 70px;
+    height: 70px;
+    background-color: #483E35; /* Achtergrondkleur voor de vakjes */
+    border: 1px solid #4CAF50; /* Rand om de vakjes */
+    border-radius: 5px; /* Optioneel: afgeronde hoeken */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden; /* Zorg ervoor dat inhoud niet buiten het vakje valt */
+}
+
+.inventory-item img {
+    width: 50px; /* Breedte van de afbeelding */
+    height: 50px; /* Hoogte van de afbeelding */
+    object-fit: contain; /* Zorg ervoor dat de afbeelding binnen het vakje past */
+}
+
+.inventory-item p {
+    font-size: 10px; /* Kleinere tekst voor itemnamen */
+    margin: 0;
+    color: white;
+}
+
+
+
+
+
+.inventory-item img {
+    width: 50px; /* Breedte van de sprite */
+    height: 50px; /* Hoogte van de sprite */
+}
+
+.inventory-item button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.inventory-item button:hover {
+    background-color: #45a049;
+}
+
+/* Verberg standaard de heal-knop en inventory */
+#healButton, #inventory {
+    display: none;
+}
+#winkelItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsieve grid */
+    gap: 15px;
+    justify-content: center;
+}
+
+.winkel-item {
+    display: flex;
+    flex-direction: column; /* Zorg ervoor dat de sprite boven de knop staat */
+    align-items: center; /* Centreer de inhoud */
+    text-align: center;
+    gap: 10px; /* Ruimte tussen de sprite en de knop */
+    background-color: #2e2e3e;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #4CAF50;
+}
+
+.winkel-item img {
+    width: 50px; /* Breedte van de sprite */
+    height: 50px; /* Hoogte van de sprite */
+}
+
+.winkel-item button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.winkel-item button:hover {
+    background-color: #45a049;
+}
+
+/* Media queries voor kleinere schermen */
+@media (max-width: 768px) {
+    header {
+        font-size: 1.2rem; /* Verklein de tekstgrootte op kleinere schermen */
+        padding: 8px; /* Verminder de padding */
+    }
+    #spelContainer {
+        width: 95%; /* Maak de container smaller op kleinere schermen */
+        padding-top: 200px; /* Verminder de bovenste padding */
+        padding-bottom: 150px; /* Verminder de onderste padding */
+    }
+
+    footer {
+        font-size: 0.9rem; /* Verklein de tekstgrootte op kleinere schermen */
+        padding: 8px; /* Verminder de padding */
+    }
+
+    nav button {
+        font-size: 0.9rem; /* Verklein de knoptekst */
+        padding: 8px 15px; /* Verminder de padding */
+    }
+}
+
+@media (max-width: 480px) {
+    
+    header {
+        font-size: 1rem; /* Nog kleinere tekstgrootte voor zeer kleine schermen */
+        padding: 5px; /* Nog minder padding */
+    }
+        #spelContainer {
+        width: 95%; /* Maak de container smaller op kleinere schermen */
+        padding-top: 200px; /* Verminder de bovenste padding */
+        padding-bottom: 150px; /* Verminder de onderste padding */
+    }
+
+    footer {
+        font-size: 0.8rem; /* Nog kleinere tekstgrootte voor zeer kleine schermen */
+        padding: 5px; /* Nog minder padding */
+    }
+
+    nav button {
+        font-size: 0.8rem; /* Verklein de knoptekst verder */
+        padding: 5px 10px; /* Nog minder padding */
+    }
+}
